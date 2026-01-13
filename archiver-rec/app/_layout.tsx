@@ -9,7 +9,7 @@ import { View } from 'react-native';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    Bold: require('./assets/fonts/WantedSansStd-Bold.otf'),
+    Bold: require('./assets/fonts/WantedSansStd-SemiBold.otf'),
     Medium: require('./assets/fonts/WantedSansStd-Medium.otf'),
     Regular: require('./assets/fonts/WantedSansStd-Regular.otf'),
   });
@@ -29,6 +29,7 @@ export default function RootLayout() {
               screenOptions={{
                 headerShown: false,
                 animation: 'slide_from_right',
+                contentStyle: { backgroundColor: theme.colors.background },
               }}
             />
           </View>
