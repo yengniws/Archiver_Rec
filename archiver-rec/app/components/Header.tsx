@@ -6,20 +6,22 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const hidePlaylistIcon =
-    pathname === '/myPlaylist' || pathname === '/myMusic';
+  // const hidePlaylistIcon =
+  //   pathname === '/myPlaylist' ||
+  //   pathname === '/myMusic' ||
+  //   pathname === '/addMusic';
 
   return (
     <Container>
       <Pressable onPress={() => router.push('/main')}>
         <Logo source={require('../assets/image/logo.png')} />
       </Pressable>
-
+      {/* 
       {!hidePlaylistIcon && (
         <Pressable onPress={() => router.push('/myPlaylist')}>
           <MoveToMyPlaylistIcon source={require('../assets/image/Icon.png')} />
         </Pressable>
-      )}
+      )} */}
     </Container>
   );
 }
