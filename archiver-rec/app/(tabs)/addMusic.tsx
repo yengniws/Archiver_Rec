@@ -9,6 +9,7 @@ export default function AddMusic() {
 
   const [image, setImage] = useState<string | null>(null);
   const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
   const [note, setNote] = useState('');
   const [dateString, setDateString] = useState('');
 
@@ -44,7 +45,7 @@ export default function AddMusic() {
   };
 
   const handleArchive = () => {
-    console.log({ title, dateString, note, image });
+    console.log({ title, artist, dateString, note, image });
     router.replace('/main');
   };
 
@@ -87,6 +88,21 @@ export default function AddMusic() {
                     placeholderTextColor='#D9D9D9'
                     value={title}
                     onChangeText={setTitle}
+                  />
+                </InputBox>
+              </LabelWrapper>
+
+              <LabelWrapper>
+                <LabelRow>
+                  <EmojiText>🎤</EmojiText>
+                  <LabelText>Artist</LabelText>
+                </LabelRow>
+                <InputBox>
+                  <TextInputStyled
+                    placeholder='아티스트명'
+                    value={artist}
+                    placeholderTextColor='#D9D9D9'
+                    onChangeText={setArtist}
                   />
                 </InputBox>
               </LabelWrapper>
@@ -187,12 +203,15 @@ const PlusIcon = styled.Image.attrs({ resizeMode: 'contain' })`
 `;
 
 const SelectedImage = styled.Image`
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -5px;
+  left: -5px;
 `;
 
 const FormSection = styled.View`
-  gap: 25px;
+  gap: 20px;
   margin-bottom: 50px;
 `;
 

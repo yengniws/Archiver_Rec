@@ -13,6 +13,7 @@ import {
   Dimensions,
 } from 'react-native';
 import styled from 'styled-components/native';
+import { useRouter } from 'expo-router';
 import { TRACKS } from '../data/tracks';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -38,6 +39,7 @@ const formatTime = (seconds: number) => {
 };
 
 export default function Player({ currentIndex, setCurrentIndex }: PlayerProps) {
+  const router = useRouter();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0); // 현재 시간 상태 추가
 
@@ -247,10 +249,12 @@ export default function Player({ currentIndex, setCurrentIndex }: PlayerProps) {
         </Animated.View>
       </LPRow>
 
-      <InfoWrapper>
-        <Title>{TRACKS[currentIndex].title}</Title>
-        <Artist>{TRACKS[currentIndex].artist}</Artist>
-      </InfoWrapper>
+      <Pressable onPress={() => router.push('/myMusic')}>
+        <InfoWrapper>
+          <Title>{TRACKS[currentIndex].title}</Title>
+          <Artist>{TRACKS[currentIndex].artist}</Artist>
+        </InfoWrapper>
+      </Pressable>
 
       <ProgressSection>
         <TimeText>{formatTime(currentTime)}</TimeText>
