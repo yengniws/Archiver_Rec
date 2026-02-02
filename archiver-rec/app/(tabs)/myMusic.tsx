@@ -2,21 +2,12 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 
-// 임시 더미 데이터
-const DUMMY_DATA = {
-  id: 1,
-  cover: require('../assets/image/sumin.png'),
-  title: '멸종위기사랑',
-  artist: '이찬혁',
-  date: '2026. 01. 03',
-  note: '멸종위기사랑',
-};
-
 export default function MyMusic() {
   const router = useRouter();
-  const params = useLocalSearchParams();
 
-  // 메인으로 돌아가는 함수
+  const params = useLocalSearchParams();
+  const { title, artist, date, note, cover } = params;
+
   const handleGoMain = () => {
     router.replace('/main');
   };
@@ -30,15 +21,15 @@ export default function MyMusic() {
             <Title2>Music</Title2>
           </TitleWrapper>
 
-          {/* LP 섹션 */}
           <LPSection>
             <LPImage source={require('../assets/image/lp.png')} />
             <CenterCircle>
-              <SelectedImage source={DUMMY_DATA.cover} />
+              <SelectedImage
+                source={cover ? { uri: cover as string } : undefined}
+              />
             </CenterCircle>
           </LPSection>
 
-          {/* 정보 조회 섹션 */}
           <InfoSection>
             <LabelWrapper>
               <LabelRow>
@@ -46,7 +37,7 @@ export default function MyMusic() {
                 <LabelText>Music</LabelText>
               </LabelRow>
               <DisplayText>
-                {DUMMY_DATA.title} / {DUMMY_DATA.artist}
+                {title} / {artist}
               </DisplayText>
             </LabelWrapper>
 
@@ -55,7 +46,7 @@ export default function MyMusic() {
                 <EmojiText>🗓️</EmojiText>
                 <LabelText>Archived Date</LabelText>
               </LabelRow>
-              <DisplayText>{DUMMY_DATA.date}</DisplayText>
+              <DisplayText>{date}</DisplayText>
             </LabelWrapper>
 
             <LabelWrapper>
@@ -64,7 +55,7 @@ export default function MyMusic() {
                 <LabelText>Note</LabelText>
               </LabelRow>
               <NoteBox>
-                <NoteText>{DUMMY_DATA.note}</NoteText>
+                <NoteText>{note}</NoteText>
               </NoteBox>
             </LabelWrapper>
           </InfoSection>
@@ -133,8 +124,6 @@ const CenterCircle = styled.View`
 `;
 
 const SelectedImage = styled.Image`
-  /* width: 100%;
-  height: 100%; */
   width: 100px;
   height: 100px;
   position: absolute;
